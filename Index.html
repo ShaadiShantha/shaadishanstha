@@ -1,112 +1,147 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="xOdOqABe15pcIbnnD2mF_XsVI3ES4xYvUuYSHjqlwaE" />
-
-  <meta charset="UTF-8">
-  <title>Shaadi Sanstha | Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://i.imgur.com/MAxcCZg.png" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <title>Shaadi Sanstha - Login</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #f8bbd0, #fce4ec);
+      background-color: #fce4ec;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      color: #333;
     }
-    .container {
-      background: white;
+    .auth-container {
+      background-color: #fff;
       padding: 30px 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      width: 90%;
-      max-width: 420px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 400px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .container img {
-      width: 80px;
-      margin-bottom: 15px;
-    }
-    h2 {
+    .auth-container h2 {
       color: #ad1457;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       text-align: left;
     }
-    label {
+    .form-group label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-      color: #444;
+      margin-bottom: 8px;
+      font-weight: bold;
     }
-    input {
-      width: 100%;
-      padding: 12px;
+    .form-group input {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1em;
     }
     button {
-      width: 100%;
-      padding: 14px;
       background-color: #d81b60;
       color: white;
+      padding: 14px 25px;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 1.1em;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      width: 100%;
     }
     button:hover {
       background-color: #c2185b;
     }
-    .toggle {
-      margin-top: 15px;
-      font-size: 0.95em;
+    .toggle-form {
+      margin-top: 20px;
+      font-size: 0.9em;
     }
-    .toggle a {
+    .toggle-form a {
       color: #ad1457;
+      font-weight: bold;
       text-decoration: none;
+    }
+    .toggle-form a:hover {
+      text-decoration: underline;
+    }
+    #error-message {
+      color: #b71c1c;
+      margin-top: 15px;
       font-weight: bold;
     }
-    .toggle a:hover {
-      text-decoration: underline;
+    #login-form, #signup-form {
+      transition: transform 0.5s ease-in-out;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      padding: 30px 40px;
+    }
+    #signup-form {
+      transform: translateX(100%);
+    }
+    .auth-container.show-signup #login-form {
+      transform: translateX(-100%);
+    }
+    .auth-container.show-signup #signup-form {
+      transform: translateX(0);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://i.imgur.com/MAxcCZg.png" alt="Shaadi Sanstha Logo">
-    <h2>Welcome to Shaadi Sanstha</h2>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="login-email" placeholder="Enter email" />
+  <div class="auth-container" id="auth-container">
+    <!-- Login Form -->
+    <div id="login-form">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required>
+      </div>
+      <button id="login-btn">Login</button>
+      <p id="login-error-message" class="error-message"></p>
+      <p class="toggle-form">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="login-password" placeholder="Enter password" />
-    </div>
-    <button onclick="login()">Login</button>
-    <div class="toggle">
-      Don't have an account? <a href="registration.html">Register</a>
+
+    <!-- Signup Form -->
+    <div id="signup-form">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" placeholder="Enter your password" required>
+      </div>
+      <button id="signup-btn">Sign Up</button>
+      <p id="signup-error-message" class="error-message"></p>
+      <p class="toggle-form">Already have an account? <a href="#" id="show-login">Login</a></p>
     </div>
   </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyCkaJ8u3Vbu8rRUeN89dKEDvMYDepXXbgY",
       authDomain: "shaadi-sanstha-fd7c2.firebaseapp.com",
       projectId: "shaadi-sanstha-fd7c2",
-      storageBucket: "shaadi-sanstha-fd7c2.firebasestorage.app",
+      storageBucket: "shaadi-sanstha-fd7c2.appspot.com",
       messagingSenderId: "1089795237506",
       appId: "1:1089795237506:web:c9db20ae0f983baca4b69b",
       measurementId: "G-V0LX6NM2QC"
@@ -115,18 +150,60 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    function login() {
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Login successful!");
-          window.location.href = "main-dashboard.html";
-        })
-        .catch((error) => {
-          alert("Login failed: " + error.message);
-        });
-    }
+    const authContainer = document.getElementById('auth-container');
+    const loginEmailInput = document.getElementById('login-email');
+    const loginPasswordInput = document.getElementById('login-password');
+    const loginBtn = document.getElementById('login-btn');
+    const signupEmailInput = document.getElementById('signup-email');
+    const signupPasswordInput = document.getElementById('signup-password');
+    const signupBtn = document.getElementById('signup-btn');
+    const loginErrorMessage = document.getElementById('login-error-message');
+    const signupErrorMessage = document.getElementById('signup-error-message');
+
+    document.getElementById('show-signup').addEventListener('click', e => {
+      e.preventDefault();
+      authContainer.classList.add('show-signup');
+    });
+    document.getElementById('show-login').addEventListener('click', e => {
+      e.preventDefault();
+      authContainer.classList.remove('show-signup');
+    });
+
+    loginBtn.addEventListener('click', async () => {
+      const email = loginEmailInput.value;
+      const password = loginPasswordInput.value;
+      loginErrorMessage.textContent = '';
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        alert('Logged in!');
+        window.location.href = 'main-dashboard.html';
+      } catch (error) {
+        loginErrorMessage.textContent = error.message;
+      }
+    });
+
+    signupBtn.addEventListener('click', async () => {
+      const email = signupEmailInput.value;
+      const password = signupPasswordInput.value;
+      signupErrorMessage.textContent = '';
+      if (password.length < 6) {
+        signupErrorMessage.textContent = 'Password must be at least 6 characters.';
+        return;
+      }
+      try {
+        await auth.createUserWithEmailAndPassword(email, password);
+        alert('Account created!');
+        window.location.href = 'main-dashboard.html';
+      } catch (error) {
+        signupErrorMessage.textContent = error.message;
+      }
+    });
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        window.location.href = 'main-dashboard.html';
+      }
+    });
   </script>
 </body>
 </html>
