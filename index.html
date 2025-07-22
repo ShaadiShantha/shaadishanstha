@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Sign Up - Shaadi Sanstha</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #fce4ec; /* Light Pink */
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+margin: 0;
+color: #333;
+}
+.auth-container {
+background-color: #fff;
+padding: 30px 40px;
+border-radius: 12px;
+box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+width: 100%;
+max-width: 400px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.auth-container h2 {
+color: #ad1457; /* Dark Red-Pink */
+margin-bottom: 25px;
+font-size: 2em;
+}
+.form-group {
+margin-bottom: 20px;
+text-align: left;
+}
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: bold;
+color: #555;
+}
+.form-group input {
+width: calc(100% - 20px);
+padding: 12px 10px;
+border: 1px solid #ccc;
+border-radius: 8px;
+font-size: 1em;
+outline: none;
+transition: border-color 0.3s ease;
+}
+.form-group input:focus {
+border-color: #d81b60;
+}
+button {
+background-color: #d81b60; /* Medium Red-Pink */
+color: white;
+padding: 14px 25px;
+border: none;
+border-radius: 8鯊;
+font-size: 1.1em;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+width: 100%;
+margin-top: 10px;
+}
+button:hover {
+background-color: #c2185b; /* Slightly darker */
+transform: translateY(-1px);
+}
+.toggle-form {
+margin-top: 20px;
+font-size: 0.9em;
+color: #666;
+}
+.toggle-form a {
+color: #ad1457;
+text-decoration: none;
+font-weight: bold;
+}
+.toggle-form a:hover {
+text-decoration: underline;
+}
+#error-message {
+color: #b71c1c; /* Deep Red */
+margin-top: 15px;
+font-weight: bold;
+}
+/* Form switching animation */
+.form-slide {
+transition: transform 0.5s ease-in-out;
+}
+#login-form {
+transform: translateX(0);
+position: absolute;
+width: 100%;
+left: 0;
+top: 0;
+padding: 30px 40px;
+}
+#signup-form {
+transform: translateX(100%);
+position: absolute;
+width: 100%;
+left: 0;
+top: 0;
+padding: 30px 40px;
+}
+.auth-container.show-signup #login-form {
+transform: translateX(-100%);
+}
+.auth-container.show-signup #signup-form {
+transform: translateX(0);
+}
+</style>
+</head>
+<body>
+<div class="auth-container" id="auth-container">
+<div id="login-form" class="form-slide">
+<h2>Login</h2>
+<div class="form-group">
+<label for="login-email">Email:</label>
+<input type="email" id="login-email" placeholder="Enter your email" required>
+</div>
+<div class="form-group">
+<label for="login-password">Password:</label>
+<input type="password" id="login-password" placeholder="Enter your password" required>
+</div>
+<button id="login-btn">Login</button>
+<p id="login-error-message" class="error-message" style="color: #b71c1c; margin-top: 10px;"></p>
+<p class="toggle-form">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+</div>
+
+<div id="signup-form" class="form-slide">
+<h2>Sign Up</h2>
+<div class="form-group">
+<label for="signup-email">Email:</label>
+<input type="email" id="signup-email" placeholder="Enter your email" required>
+</div>
+<div class="form-group">
+<label for="signup-password">Password:</label>
+<input type="password" id="signup-password" placeholder="Enter your password" required>
+</div>
+<button id="signup-btn">Sign Up</button>
+<p id="signup-error-message" class="error-message" style="color: #b71c1c; margin-top: 10px;"></p>
+<p class="toggle-form">Already have an account? <a href="#" id="show-login">Login</a></p>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+apiKey: "AIzaSyCkaJ8u3Vbu8rRUeN89dKEDvMYDepXXbgY",
+authDomain: "shaadi-sanstha-fd7c2.firebaseapp.com",
+projectId: "shaadi-sanstha-fd7c2",
+storageBucket: "shaadi-sanstha-fd7c2.firebasestorage.app",
+messagingSenderId: "1089795237506",
+appId: "1:1089795237506:web:c9db20ae0f983baca4b69b",
+measurementId: "G-V0LX6NM2QC"
+};
+
+// Firebase को इनिशियलाइज़ करें
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// HTML elements
+const authContainer = document.getElementById('auth-container');
+const loginForm = document.getElementById('login-form');
+const signupForm = document.getElementById('signup-form');
+const showSignupBtn = document.getElementById('show-signup');
+const showLoginBtn = document.getElementById('show-login');
+const loginEmailInput = document.getElementById('login-email');
+const loginPasswordInput = document.getElementById('login-password');
+const loginBtn = document.getElementById('login-btn');
+const signupEmailInput = document.getElementById('signup-email');
+const signupPasswordInput = document.getElementById('signup-password');
+const signupBtn = document.getElementById('signup-btn');
+const loginErrorMessage = document.getElementById('login-error-message');
+const signupErrorMessage = document.getElementById('signup-error-message');
+
+// Form switching logic
+showSignupBtn.addEventListener('click', (e) => {
+e.preventDefault();
+authContainer.classList.add('show-signup');
+loginErrorMessage.textContent = ''; // Clear any previous errors
+});
+
+showLoginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+authContainer.classList.remove('show-signup');
+signupErrorMessage.textContent = ''; // Clear any previous errors
+});
+
+// Sign Up User
+signupBtn.addEventListener('click', async () => {
+const email = signupEmailInput.value;
+const password = signupPasswordInput.value;
+signupErrorMessage.textContent = ''; // Clear previous error
+
+if (password.length < 6) {
+signupErrorMessage.textContent = 'Password should be at least 6 characters.';
+return;
+}
+
+try {
+await auth.createUserWithEmailAndPassword(email, password);
+alert('Account created successfully! You are now logged in.');
+// Redirect to the main dashboard after successful signup
+window.location.href = 'main-dashboard.html';
+} catch (error) {
+console.error("Signup error:", error.message);
+signupErrorMessage.textContent = error.message;
+}
+});
+
+// Login User
+loginBtn.addEventListener('click', async () => {
+const email = loginEmailInput.value;
+const password = loginPasswordInput.value;
+loginErrorMessage.textContent = ''; // Clear previous error
+
+try {
+await auth.signInWithEmailAndPassword(email, password);
+alert('Logged in successfully!');
+// Redirect to the main dashboard after successful login
+window.location.href = 'main-dashboard.html';
+} catch (error) {
+console.error("Login error:", error.message);
+loginErrorMessage.textContent = error.message;
+}
+});
+
+// Check auth state on page load: If user is ALREADY logged in, redirect them to main-dashboard.html
+auth.onAuthStateChanged(user => {
+if (user) {
+console.log("User already logged in, redirecting to main-dashboard.html:", user.email);
+window.location.href = 'main-dashboard.html';
+} else {
+console.log("No user signed in on login/signup page. Staying here.");
+}
+});
+</script>
+</body>
+</html>
