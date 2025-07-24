@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shaadi Sanstha - Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #fff0f5; }
+    h1 { text-align: center; color: #880e4f; }
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #6a1b9a; margin-top: 30px; border-bottom: 2px solid #ddd; padding-bottom: 10px; } /* Added border-bottom */
+    label { font-weight: bold; display: block; margin-top: 15px; color: #4a148c; }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%; padding: 10px; margin-top: 5px;
+      border: 1px solid #ccc; border-radius: 5px;
+      box-sizing: border-box; /* Ensures padding doesn't increase width */
+    }
+    input[type="file"] { /* Style for file input */
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+        width: auto; /* File input might not need full width */
+    }
+    button {
+      margin-top: 30px; background-color: #c2185b;
+      color: white; font-weight: bold; padding: 12px;
+      border: none; border-radius: 6px; cursor: pointer;
+      width: 100%; /* Make button full width */
+      font-size: 1.1em; /* Larger font for button */
+    }
+    button:hover { background-color: #880e4f; }
+  </style>
+</head>
+<body>
+  <h1>Shaadi Sanstha - Matrimonial Registration</h1>
+  <form action="https://formsubmit.co/shaadishanstha.in@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_next" value="https://shaadi-sanstha-fd7c2.web.app/thank-you2.html" />
+    <input type="hidden" name="_subject" value="Shaadi Sanstha - New Registration Form Submission!" />
+    <h2>👤 Personal Information</h2>
+    <label>Full Name:</label>
+    <input type="text" name="full_name" required>
+    <label>Gender:</label>
+    <select name="gender" required>
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+    <label>Date of Birth:</label>
+    <input type="date" name="dob" required>
+    <label>Age:</label>
+    <input type="number" name="age" required>
+    <label>Caste:</label>
+    <select name="caste" required>
+      <option value="">Select Caste</option>
+      <option>Brahmin</option>
+      <option>Rajput</option>
+      <option>Bhumihar</option>
+      <option>Kayastha</option>
+      <option>Yadav</option>
+      <option>Kushwaha</option>
+      <option>Kurmi</option>
+      <option>Bania</option>
+      <option>Maithil</option>
+      <option>Marwari</option>
+      <option>Khatri</option>
+      <option>Jat</option>
+      <option>Gujjar</option>
+      <option>Vaishya</option>
+      <option>Thakur</option>
+      <option>Muslim</option>
+      <option>Christian</option>
+      <option>Sikh</option>
+      <option>Other</option>
+    </select>
+    <label>Sub-Caste (Optional):</label>
+    <input type="text" name="sub_caste">
+    <label>Religion:</label>
+    <select name="religion" required>
+      <option value="">Select Religion</option>
+      <option>Hindu</option>
+      <option>Muslim</option>
+      <option>Christian</option>
+      <option>Sikh</option>
+      <option>Buddhist</option>
+      <option>Jain</option>
+      <option>Other</option>
+    </select>
+    <label>Height (cm):</label>
+    <input type="number" name="height">
+    <label>Complexion:</label>
+    <select name="complexion">
+      <option value="">Select Complexion</option>
+      <option>Fair</option>
+      <option>Wheatish</option>
+      <option>Dark</option>
+    </select>
+    <label>Any Disability (Optional):</label>
+    <select name="disability">
+        <option value="">Select</option>
+        <option>No</option>
+        <option>Physical Disability</option>
+        <option>Other</option>
+    </select>
+
+    <h2>📸 Upload Profile Picture</h2>
+    <label>Upload Your Photo (Max 2MB, JPG/PNG only):</label>
+    <input type="file" name="profile_picture" accept="image/jpeg, image/png">
+    <small style="color: #666;">(A clear, recent photo helps in better matches)</small>
+
+
+    <h2>📞 Contact Details</h2>
+    <label>Mobile Number:</label>
+    <input type="tel" name="mobile" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    
+    <label>State:</label>
+    <select name="state" id="stateSelect" required>
+      <option value="">Select State</option>
+      </select>
+
+    <label>District:</label>
+    <select name="district" id="districtSelect" required>
+      <option value="">Select District</option>
+      </select>
+
+    <label>City:</label>
+    <input type="text" name="city">
+    <label>Pin Code:</label>
+    <input type="text" name="pincode">
+
+    <h2>📚 Education & Job</h2>
+    <label>Highest Education Level:</label>
+    <select name="education_level" required>
+      <option value="">Select Education Level</option>
+      <option>Below 10th</option>
+      <option>10th Pass</option>
+      <option>12th Pass</option>
+      <option>Diploma</option>
+      <option>Graduate (B.A., B.Sc., B.Com, B.Tech, MBBS, BCA, BBA, B.Arch, B.Pharm, etc.)</option>
+      <option>Post Graduate (M.A., M.Sc., M.Com, M.Tech, MD, MCA, MBA, M.Arch, M.Pharm, etc.)</option>
+      <option>Doctorate (Ph.D.)</option>
+      <option>Professional Degree (CA, CS, ICWA, LLB, IIT, IIM, AIIMS, etc.)</option>
+      <option>Other</option>
+    </select>
+    <label>Specific Degree/Field of Study (e.g., B.Tech in Computer Science, IIT Delhi):</label>
+    <input type="text" name="specific_education">
+    <label>Profession:</label>
+    <select name="profession" required>
+      <option value="">Select Profession</option>
+      <option>Government Job (IAS, IPS, IRS, IFS, PCS, etc.)</option>
+      <option>Private Job</option>
+      <option>Business/Entrepreneur</option>
+      <option>Doctor</option>
+      <option>Engineer</option>
+      <option>Teacher/Professor</option>
+      <option>Defence/Police</option>
+      <option>IT Professional</option>
+      <option>Artist/Creative</option>
+      <option>Farmer</option>
+      <option>Student</option>
+      <option>Homemaker</option>
+      <option>Retired</option>
+      <option>Not Working</option>
+      <option>Self Employed</option>
+      <option>Management Professional</option>
+      <option>Banking Professional</option>
+      <option>Lawyer</option>
+      <option>Architect</option>
+      <option>Designer</option>
+      <option>Journalist</option>
+      <option>Scientist</option>
+      <option>Research Scholar</option>
+      <option>Pilot</option>
+      <option>Merchant Navy</option>
+      <option>Other</option>
+    </select>
+    <label>Monthly Income (₹):</label>
+    <select name="income">
+        <option value="">Select Income Range</option>
+        <option value="Below ₹20,000">Below ₹20,000</option>
+        <option value="₹20,000 - ₹40,000">₹20,000 - ₹40,000</option>
+        <option value="₹40,000 - ₹60,000">₹40,000 - ₹60,000</option>
+        <option value="₹60,000 - ₹80,000">₹60,000 - ₹80,000</option>
+        <option value="₹80,000 - ₹1,00,000">₹80,000 - ₹1,00,000</option>
+        <option value="₹1,00,000 - ₹1,50,000">₹1,00,000 - ₹1,50,000</option>
+        <option value="₹1,50,000 - ₹2,00,000">₹1,50,000 - ₹2,00,000</option>
+        <option value="₹2,00,000 - ₹3,00,000">₹2,00,000 - ₹3,00,000</option>
+        <option value="₹3,00,000 - ₹5,00,000">₹3,00,000 - ₹5,00,000</option>
+        <option value="Above ₹5,00,000">Above ₹5,00,000</option>
+    </select>
+
+    <h2>🏠 Family Background</h2>
+    <label>Father's Name:</label>
+    <input type="text" name="father_name">
+    <label>Father's Occupation:</label>
+    <input type="text" name="father_occupation">
+    <label>Mother's Name:</label>
+    <input type="text" name="mother_name">
+    <label>Mother's Occupation:</label>
+    <input type="text" name="mother_occupation">
+    <label>Family Type:</label>
+    <select name="family_type">
+        <option value="">Select Family Type</option>
+        <option>Nuclear Family</option>
+        <option>Joint Family</option>
+    </select>
+    <label>Family Values:</label>
+    <select name="family_values">
+        <option value="">Select Family Values</option>
+        <option>Traditional</option>
+        <option>Moderate</option>
+        <option>Modern</option>
+    </select>
+    <label>Number of Siblings (Brothers, Sisters):</label>
+    <input type="text" name="siblings" placeholder="e.g., 1 Brother, 2 Sisters (1 Married)">
+    
+    <h2>💍 Lifestyle & Marriage Preferences</h2>
+    <label>Looking For:</label>
+    <select name="looking_for">
+      <option value="">Select</option>
+      <option>Bride</option>
+      <option>Groom</option>
+    </select>
+    <label>Marital Status:</label>
+    <select name="marital_status">
+        <option value="">Select Status</option>
+        <option>Never Married</option>
+        <option>Divorced</option>
+        <option>Widowed</option>
+        <option>Annulled</option>
+    </select>
+    <label>Dietary Preferences:</label>
+    <select name="dietary_preferences">
+        <option value="">Select</option>
+        <option>Vegetarian</option>
+        <option>Non-Vegetarian</option>
+        <option>Eggetarian</option>
+        <option>Vegan</option>
+    </select>
+    <label>Smoking Habits:</label>
+    <select name="smoking_habits">
+        <option value="">Select</option>
+        <option>Non-Smoker</option>
+        <option>Occasional Smoker</option>
+        <option>Regular Smoker</option>
+    </select>
+    <label>Drinking Habits:</label>
+    <select name="drinking_habits">
+        <option value="">Select</option>
+        <option>Non-Drinker</option>
+        <option>Social Drinker</option>
+        <option>Regular Drinker</option>
+    </select>
+    <label>Preferred Age Range (for partner):</label>
+    <input type="text" name="preferred_age" placeholder="e.g., 25-30 years">
+    <label>Preferred Caste (for partner):</label>
+    <input type="text" name="preferred_caste">
+    <label>Preferred Education (for partner):</label>
+    <input type="text" name="preferred_education">
+    <label>Preferred Profession (for partner):</label>
+    <input type="text" name="preferred_profession">
+
+    <h2>🔮 Horoscope Info (Optional)</h2>
+    <label>Birth Time:</label>
+    <input type="text" name="birth_time">
+    <label>Birth Place:</label>
+    <input type="text" name="birth_place">
+    <label>Gotra:</label>
+    <input type="text" name="gotra">
+    <label>Manglik Status:</label>
+    <select name="manglik_status">
+        <option value="">Select</option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>Partial Manglik</option>
+        <option>Don't Know</option>
+    </select>
+
+    <h2>📝 About Me / Partner Expectations</h2>
+    <label>Tell us about yourself (Personality, Hobbies, Interests, etc.):</label>
+    <textarea name="about_me" rows="4" placeholder="Share a few lines about your personality, what you enjoy doing, and your aspirations."></textarea>
+    <label>What are you looking for in a partner?:</label>
+    <textarea name="partner_expectations" rows="4" placeholder="Describe the qualities you seek in your life partner and your expectations from the relationship."></textarea>
+
+    <button type="submit">Submit Registration</button>
+  </form>
+
+  <script>
+    // Indian States and their Districts data
+    const indiaStatesAndDistricts = {
+        "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+        "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Raadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke-Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
+        "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup Metropolitan", "Kamrup", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"],
+        "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur (Bhabua)", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
+        "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela Pendra Marwahi", "Janjgir-Champa", "Jashpur", "Kanker", "Kawardha", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
+        "Goa": ["North Goa", "South Goa"],
+        "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udepur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Valsad"],
+        "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
+        "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
+        "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahebganj", "Saraikela Kharsawan", "Simdega", "West Singhbhum"],
+        "Karnataka": ["Bagalkot", "Ballari (Bellary)", "Belagavi (Belgaum)", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Kalaburagi (Gulbarga)", "Hassan", "Haveri", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru (Mysore)", "Raichur", "Ramanagara", "Shivamogga (Shimoga)", "Tumakuru (Tumkur)", "Udupi", "Uttara Kannada", "Vijayapura (Bijapur)", "Yadgir"],
+        "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
+        "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
+        "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
+        "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
+        "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "North Garo Hills", "Ri-Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
+        "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
+        "Nagaland": ["Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"],
+        "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Debagarh (Deogarh)", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar (Keonjhar)", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur (Sonepur)", "Sundargarh"],
+        "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Sahibzada Ajit Singh Nagar (Mohali)", "Sangrur", "Shaheed Bhagat Singh Nagar (Nawanshahr)", "Sri Muktsar Sahib", "Tarn Taran"],
+        "Rajasthan": ["Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bhilwara", "Bharatpur", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
+        "Sikkim": ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
+        "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi (Tuticorin)", "Tiruchirappalli", "Tirunelveli", "Tirupattur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+        "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal–Malkajgiri", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal Rural", "Warangal Urban", "Yadadri Bhuvanagiri"],
+        "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
+        "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shrawasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
+        "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
+        "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur (South Dinajpur)", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kolkata", "Kalimpong", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman (West Bardhaman)", "Paschim Medinipur (West Medinipur)", "Purba Bardhaman (East Bardhaman)", "Purba Medinipur (East Medinipur)", "Purulia", "South 24 Parganas", "Uttar Dinajpur (North Dinajpur)"],
+        "Andaman and Nicobar Islands": ["Nicobar", "North and Middle Andaman", "South Andaman"],
+        "Chandigarh": ["Chandigarh"],
+        "Dadra and Nagar Haveli and Daman and Diu": ["Dadra and Nagar Haveli", "Daman", "Diu"],
+        "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
+        "Jammu and Kashmir": ["Anantnag", "Bandipora", "Baramulla", "Budgam", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kulgam", "Kupwara", "Poonch", "Pulwama", "Rajouri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"],
+        "Ladakh": ["Kargil", "Leh"],
+        "Lakshadweep": ["Lakshadweep"],
+        "Puducherry": ["Karaikal", "Mahe", "Puducherry", "Yanam"]
+    };
+
+    const stateSelect = document.getElementById('stateSelect');
+    const districtSelect = document.getElementById('districtSelect');
+
+    // Populate States dropdown
+    function populateStates() {
+      for (const state in indiaStatesAndDistricts) {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+      }
+    }
+
+    // Populate Districts based on selected State
+    function populateDistricts() {
+      const selectedState = stateSelect.value;
+      districtSelect.innerHTML = '<option value="">Select District</option>'; // Clear existing options
+      
+      if (selectedState && indiaStatesAndDistricts[selectedState]) {
+        indiaStatesAndDistricts[selectedState].forEach(district => {
+          const option = document.createElement('option');
+          option.value = district;
+          option.textContent = district;
+          districtSelect.appendChild(option);
+        });
+      }
+    }
+
+    // Event Listeners
+    stateSelect.addEventListener('change', populateDistricts); // When state changes, update districts
+
+    // Initial population of states when page loads
+    populateStates();
+  </script>
+</body>
+</html>
